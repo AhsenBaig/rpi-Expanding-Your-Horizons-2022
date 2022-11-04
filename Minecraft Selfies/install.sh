@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo apt-get install python3-skimage
+sudo ap-get update && apt-get upgrade && apt-get install -y python3-skimage

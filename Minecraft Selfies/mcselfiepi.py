@@ -60,11 +60,11 @@ def buildMCImage(mc, filename, pos):
         im.thumbnail(size, Image.ANTIALIAS)
     
     pixels=im.load()
-
-    for x in range (-(im.size[0]/2),(im.size[0]/2)):
+    # Python3 requires // for int division operator.
+    for x in range (-(im.size[0]//2),(im.size[0]//2)):
         for y in range (0,(im.size[1])):
             mc.setBlock(pos.x + x, pos.y + sizeY - y, pos.z - 1, 35,
-                        colormap(pixels[x+(im.size[0]/2) , y]))
+                        colormap(pixels[x+(im.size[0]//2) , y]))
 
             #print "{}.{}.{}".format(x, y, 5)
             sleep(0.005)
@@ -77,7 +77,7 @@ mc.postToChat("Hit a block (right click with sword)")
 while True:
     #has a block been hit?
     for hit in mc.events.pollBlockHits():
-        filename = "/home/pi/" + str(int(time())) + ".png"
+        filename = "~/Pictures/" + str(int(time())) + ".png"
         mc.postToChat("Taking picture in 1 second")
         sleep(1)
         takePicture(filename)
